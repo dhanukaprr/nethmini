@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Premium Bootstrap 4 Landing Page Template" />
-    <meta name="keywords" content="bootstrap 4, premium, marketing, multipurpose" />
-    <meta name="author" content="Zoyothemes">
-    <title>Natia - Personal Portfolio Template</title>
+    <meta name="description" content="Anne Nissanka - Fashion & Lifestyle Designer Portfolio" />
+    <meta name="keywords" content="fashion, design, lifestyle, portfolio, anne nissanka" />
+    <meta name="author" content="Anne Nissanka">
+    <title>Portfolio - Anne Nissanka | Fashion & Lifestyle Designer</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -22,6 +22,260 @@
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet" type="text/css" />
 
+    <style>
+        .portfolio-hero {
+            background: url('images/home/bg-1.png') center center;
+            background-size: cover;
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .portfolio-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .portfolio-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .portfolio-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .filter-buttons {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 2px solid #ebb884;
+            color: #ebb884;
+            padding: 10px 25px;
+            margin: 5px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #ebb884;
+            color: white;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-overlay h5 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .portfolio-overlay p {
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox-content {
+            position: relative;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 20px;
+        }
+
+        .lightbox-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            color: #ebb884;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(235, 184, 132, 0.8);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            background: #ebb884;
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 25px;
+            border-radius: 25px;
+            max-width: 80%;
+        }
+
+        .lightbox-caption h5 {
+            margin: 0 0 5px 0;
+            font-size: 1.2rem;
+        }
+
+        .lightbox-caption p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .portfolio-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .lightbox-nav {
+                padding: 10px 15px;
+                font-size: 16px;
+            }
+            
+            .lightbox-close {
+                top: 15px;
+                right: 20px;
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .portfolio-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -31,10 +285,9 @@
         <div class="container">
             <a class="navbar-brand" href="index.html">
                 <span class="logo-light-mode">
-                    <img src="images/logo-light.png" class="l-light" alt="">
-                    <img src="images/logo-dark.png" class="l-dark" alt="">
+                    <p class="text-white" style="font-size: 20px; font-weight: 600;">Anne Nissanka</p>
                 </span>
-                <img src="images/logo-light.png" class="logo-dark-mode" alt="">
+                <img alt="" class="logo-dark-mode" src="images/logo-light.png"/>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,216 +297,194 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navbar-navlist">
                     <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
+                        <a class="nav-link" href="index.html#home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About Us</a>
+                        <a class="nav-link" href="index.html#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#work">Work</a>
+                        <a class="nav-link" href="index.html#services">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
+                        <a class="nav-link active" href="portfolio.html">Portfolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#testimonial">Testimonial</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="index.html#contact">Contact</a>
                     </li>
                 </ul>
             </div>
-            <!-- End collapse -->
         </div>
-        <!-- End container -->
     </nav>
     <!-- Navbar End -->
 
-    <!-- Hero Start -->
-    <section class="bg-half-170 d-table w-100" style="background: url('images/13.jpg')center center;">
-        <div class="bg-overlay bg-overlay-white"></div>
+    <!-- Portfolio Hero Start -->
+    <section class="portfolio-hero">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12 text-center">
-                    <h4 class="typed-heading text-white">Portfolio Standard</h4>
-                    <div class="page-next">
-                        <nav aria-label="breadcrumb" class="d-inline-block">
-                            <ul class="breadcrumb rounded mb-0 mt-3">
-                                <li class="breadcrumb-item text-white"><a href="index.html" class="text-white">Home</a></li>
-                                <span class="px-3 text-white">|</span>
-                                <li class="breadcrumb-item text-primary" aria-current="page">Portfolio</li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <!-- <div class="page-next-level">
-                        
-                    </div> -->
-                </div>  <!--end col-->
-            </div><!--end row-->
-        </div> <!--end container-->
-    </section><!--end section-->
-    <!-- Hero End -->
+            <h1>My Portfolio</h1>
+            <p>Discover my latest fashion designs, lifestyle collections, and creative projects that showcase my passion for innovative design and trend-setting aesthetics.</p>
+        </div>
+    </section>
+    <!-- Portfolio Hero End -->
 
-    <div class="position-relative">
-        <div class="shape overflow-hidden text-white">
-            <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
-            </svg>
+    <!-- Filter Buttons -->
+    <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All Work</button>
+        <button class="filter-btn" data-filter="fashion">Fashion Design</button>
+        <button class="filter-btn" data-filter="lifestyle">Lifestyle</button>
+        <button class="filter-btn" data-filter="accessories">Accessories</button>
+        <button class="filter-btn" data-filter="collections">Collections</button>
+    </div>
+
+    <!-- Portfolio Grid -->
+    <section class="py-5">
+        <div class="portfolio-grid">
+            <div class="portfolio-item" data-category="fashion" data-index="0">
+                <img src="https://via.placeholder.com/400x400/f8f9fa/6c757d?text=Spring+Collection" alt="Spring Collection">
+                <div class="portfolio-overlay">
+                    <h5>Spring/Summer Collection 2024</h5>
+                    <p>Elegant evening wear with sustainable materials</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="lifestyle" data-index="1">
+                <img src="https://via.placeholder.com/400x400/e9ecef/495057?text=Casual+Wear" alt="Casual Wear">
+                <div class="portfolio-overlay">
+                    <h5>Casual Wear</h5>
+                    <p>Comfort meets style</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="accessories" data-index="2">
+                <img src="https://via.placeholder.com/400x400/dee2e6/495057?text=Handbags" alt="Handbag Collection">
+                <div class="portfolio-overlay">
+                    <h5>Handbag Collection</h5>
+                    <p>Luxury leather designs</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="fashion" data-index="3">
+                <img src="https://via.placeholder.com/400x400/ced4da/495057?text=Evening+Dress" alt="Evening Dress">
+                <div class="portfolio-overlay">
+                    <h5>Evening Dress</h5>
+                    <p>Red carpet ready</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="collections" data-index="4">
+                <img src="https://via.placeholder.com/400x400/adb5bd/495057?text=Winter+Line" alt="Winter Line">
+                <div class="portfolio-overlay">
+                    <h5>Winter Line</h5>
+                    <p>Cozy & chic</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="lifestyle" data-index="5">
+                <img src="https://via.placeholder.com/400x400/6c757d/ffffff?text=Active+Wear" alt="Active Wear">
+                <div class="portfolio-overlay">
+                    <h5>Active Wear</h5>
+                    <p>Performance meets fashion</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="accessories" data-index="6">
+                <img src="https://via.placeholder.com/400x400/495057/ffffff?text=Jewelry" alt="Jewelry Line">
+                <div class="portfolio-overlay">
+                    <h5>Jewelry Line</h5>
+                    <p>Minimalist elegance</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="fashion" data-index="7">
+                <img src="https://via.placeholder.com/400x400/343a40/ffffff?text=Bridal+Collection" alt="Bridal Collection">
+                <div class="portfolio-overlay">
+                    <h5>Bridal Collection</h5>
+                    <p>Timeless beauty</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="collections" data-index="8">
+                <img src="https://via.placeholder.com/400x400/212529/ffffff?text=Kids+Line" alt="Kids Line">
+                <div class="portfolio-overlay">
+                    <h5>Kids Line</h5>
+                    <p>Playful & practical</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="lifestyle" data-index="9">
+                <img src="https://via.placeholder.com/400x400/6c757d/ffffff?text=Beach+Wear" alt="Beach Wear">
+                <div class="portfolio-overlay">
+                    <h5>Beach Wear</h5>
+                    <p>Summer vibes</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="accessories" data-index="10">
+                <img src="https://via.placeholder.com/400x400/495057/ffffff?text=Scarves" alt="Scarves">
+                <div class="portfolio-overlay">
+                    <h5>Scarves</h5>
+                    <p>Silk elegance</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="fashion" data-index="11">
+                <img src="https://via.placeholder.com/400x400/343a40/ffffff?text=Business+Attire" alt="Business Attire">
+                <div class="portfolio-overlay">
+                    <h5>Business Attire</h5>
+                    <p>Professional chic</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="collections" data-index="12">
+                <img src="https://via.placeholder.com/400x400/212529/ffffff?text=Limited+Edition" alt="Limited Edition">
+                <div class="portfolio-overlay">
+                    <h5>Limited Edition</h5>
+                    <p>Exclusive designs</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="fashion" data-index="13">
+                <img src="https://via.placeholder.com/400x400/6c757d/ffffff?text=Runway+Collection" alt="Runway Collection">
+                <div class="portfolio-overlay">
+                    <h5>Runway Collection</h5>
+                    <p>Paris Fashion Week highlights</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="lifestyle" data-index="14">
+                <img src="https://via.placeholder.com/400x400/495057/ffffff?text=Loungewear" alt="Loungewear">
+                <div class="portfolio-overlay">
+                    <h5>Loungewear</h5>
+                    <p>Comfort first</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="accessories" data-index="15">
+                <img src="https://via.placeholder.com/400x400/343a40/ffffff?text=Belts" alt="Belts">
+                <div class="portfolio-overlay">
+                    <h5>Belts</h5>
+                    <p>Statement pieces</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&#10094;</button>
+            <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">&#10095;</button>
+            <img id="lightboxImage" class="lightbox-image" src="" alt="">
+            <div class="lightbox-caption">
+                <h5 id="lightboxTitle"></h5>
+                <p id="lightboxDescription"></p>
+            </div>
         </div>
     </div>
-    <!-- end hero -->
-
-    <section class="bg-half-100 work-section" id="work">
-        <div class="container">
-
-          <div class="row align-items-center">
-            <div class="col-xxl-12"><!-- Start Col -->
-                <div class="filters-group mb-5">
-                    <ul class="container-filter list-inline filter-options text-center">
-                        <li class="list-inline-item categories active" data-group="all">All</a></li>
-                        <li class="list-inline-item categories" data-group="branding">Branding</a></li>
-                        <li class="list-inline-item categories" data-group="designing">Designing</a></li>
-                        <li class="list-inline-item categories" data-group="photography">Photography</a></li>
-                        <li class="list-inline-item categories" data-group="development">Development</a></li>
-                    </ul>
-                </div>
-            </div><!-- End col -->
-          </div>
-    
-            <div id="gallery-wrapper" class="row projects-wrapper gy-4">
-                <div class="col-lg-4 col-md-6 col-12 picture-item" data-groups='["branding"]'>
-                    <div class="work-container position-relative d-block overflow-hidden rounded">
-                        <div class="card-body p-0">
-                            <img src="images/portfolio/01.jpg" class="img-fluid" alt="work-image">
-                            <div class="overlay-work bg-dark"></div>
-                            <div class="content">
-                                <h5 class="mb-3"><a class='content-title' href='javascript:void(0)'>Mockup Collection</a></h5>
-                                <h6 class="text-light tag mb-0">Mockup</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div><!--end col-->
-
-                <div class="col-lg-4 col-md-6 col-12 picture-item" data-groups='["designing"]'>
-                    <div class="work-container position-relative d-block overflow-hidden rounded">
-                        <div class="card-body p-0">
-                            <img src="images/portfolio/02.jpg" class="img-fluid" alt="work-image">
-                            <div class="overlay-work bg-dark"></div>
-                            <div class="content">
-                                <h5 class="mb-3"><a class='content-title' href='javascript:void(0)'>Mockup Collection</a></h5>
-                                <h6 class="text-light tag mb-0">Mockup</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div><!--end col-->
-
-                <div class="col-lg-4 col-md-6 col-12 picture-item" data-groups='["photography"]'>
-                    <div class="work-container position-relative d-block overflow-hidden rounded">
-                        <div class="card-body p-0">
-                            <img src="images/portfolio/03.jpg" class="img-fluid" alt="work-image">
-                            <div class="overlay-work bg-dark"></div>
-                            <div class="content">
-                                <h5 class="mb-3"><a class='content-title' href='javascript:void(0)'>Mockup Collection</a></h5>
-                                <h6 class="text-light tag mb-0">Mockup</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div><!--end col-->
-
-                <div class="col-lg-4 col-md-6 col-12 picture-item" data-groups='["development"]'>
-                    <div class="work-container position-relative d-block overflow-hidden rounded">
-                        <div class="card-body p-0">
-                            <img src="images/portfolio/04.jpg" class="img-fluid" alt="work-image">
-                            <div class="overlay-work bg-dark"></div>
-                            <div class="content">
-                                <h5 class="mb-3"><a class='content-title' href='javascript:void(0)'>Mockup Collection</a></h5>
-                                <h6 class="text-light tag mb-0">Mockup</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div><!--end col-->
-
-                <div class="col-lg-4 col-md-6 col-12 picture-item" data-groups='["branding"]'>
-                    <div class="work-container position-relative d-block overflow-hidden rounded">
-                        <div class="card-body p-0">
-                            <img src="images/portfolio/05.jpg" class="img-fluid" alt="work-image">
-                            <div class="overlay-work bg-dark"></div>
-                            <div class="content">
-                                <h5 class="mb-3"><a class='content-title' href='javascript:void(0)'>Mockup Collection</a></h5>
-                                <h6 class="text-light tag mb-0">Mockup</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div><!--end col-->
-
-                <div class="col-lg-4 col-md-6 col-12 picture-item" data-groups='["designing"]'>
-                    <div class="work-container position-relative d-block overflow-hidden rounded">
-                        <div class="card-body p-0">
-                            <img src="images/portfolio/06.jpg" class="img-fluid" alt="work-image">
-                            <div class="overlay-work bg-dark"></div>
-                            <div class="content">
-                                <h5 class="mb-3"><a class='content-title' href='javascript:void(0)'>Mockup Collection</a></h5>
-                                <h6 class="text-light tag mb-0">Mockup</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div><!--end col-->
-
-                <div class="col-lg-4 col-md-6 col-12 picture-item" data-groups='["photography"]'>
-                    <div class="work-container position-relative d-block overflow-hidden rounded">
-                        <div class="card-body p-0">
-                            <img src="images/portfolio/07.jpg" class="img-fluid" alt="work-image">
-                            <div class="overlay-work bg-dark"></div>
-                            <div class="content">
-                                <h5 class="mb-3"><a class='content-title' href='javascript:void(0)'>Mockup Collection</a></h5>
-                                <h6 class="text-light tag mb-0">Mockup</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div><!--end col-->
-
-                <div class="col-lg-4 col-md-6 col-12 picture-item" data-groups='["development"]'>
-                    <div class="work-container position-relative d-block overflow-hidden rounded">
-                        <div class="card-body p-0">
-                            <img src="images/portfolio/08.jpg" class="img-fluid" alt="work-image">
-                            <div class="overlay-work bg-dark"></div>
-                            <div class="content">
-                                <h5 class="mb-3"><a class='content-title' href='javascript:void(0)'>Mockup Collection</a></h5>
-                                <h6 class="text-light tag mb-0">Mockup</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div><!--end col-->
-
-                <div class="col-lg-4 col-md-6 col-12 picture-item" data-groups='["branding"]'>
-                    <div class="work-container position-relative d-block overflow-hidden rounded">
-                        <div class="card-body p-0">
-                            <img src="images/portfolio/09.jpg" class="img-fluid" alt="work-image">
-                            <div class="overlay-work bg-dark"></div>
-                            <div class="content">
-                                <h5 class="mb-3"><a class='content-title' href='javascript:void(0)'>Mockup Collection</a></h5>
-                                <h6 class="text-light tag mb-0">Mockup</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div><!--end col-->
-            </div><!--end row-->
-    
-            <div class="col-12">
-                <div class="text-center">
-                    <a href="#!" class="btn btn-primary rounded-pill mt-5"> See more</a>
-                </div>
-            </div><!--end col-->
-        </div><!-- End container -->
-    </section>
 
     <!-- Footer Start -->
     <footer class="footer-section">
         <div class="container-footer">
-
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12">
@@ -264,9 +495,8 @@
                                         <div class="footer-title mb-20">
                                             <h6>Address</h6>
                                         </div>
-                            
                                         <div class="footer-subtitle footer-text-style">
-                                            <p>Germany — 426 Eden Drive Richmond, VA 23219</p>
+                                            <p>Colombo, Sri Lanka</p>
                                         </div>
                                     </div>
                                 </div>
@@ -278,10 +508,10 @@
                                         </div>
                                         <div class="footer-subtitle footer-text-style">
                                             <p class="mb-10 footer-text-style">
-                                                <a href="javascript:void(0)" class="footer-text-style">hello@design.com</a>
+                                                <a href="mailto:anne@example.com" class="footer-text-style">anne@example.com</a>
                                             </p>
                                             <h5>
-                                                <a href="#">+61 214 585 17 69</a>
+                                                <a href="tel:+94112345678">+94 11 234 5678</a>
                                             </h5>
                                         </div>
                                     </div>
@@ -292,10 +522,10 @@
                                         <h6>Social</h6>
                                     </div>
                                     <ul class="social-text">
-                                        <li class="mb-2"><a href="javascript:void(0)">Facebook</a></li>
-                                        <li class="mb-2"><a href="javascript:void(0)">Twitter</a></li>
-                                        <li class="mb-2"><a href="javascript:void(0)">LinkedIn</a></li>
                                         <li class="mb-2"><a href="javascript:void(0)">Instagram</a></li>
+                                        <li class="mb-2"><a href="javascript:void(0)">Pinterest</a></li>
+                                        <li class="mb-2"><a href="javascript:void(0)">LinkedIn</a></li>
+                                        <li class="mb-2"><a href="javascript:void(0)">Behance</a></li>
                                     </ul>
                                 </div>
                         
@@ -321,7 +551,7 @@
                             </div>
                         </div>
                     </div>
-                </div><!--end row-->
+                </div>
             </div>
 
             <div class="footer-bar pt-30 pb-30">
@@ -329,22 +559,21 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="logo">
-                                <a href="javascript:void(0)"><img src="images/logo-light.png" class="img-fluid"></a>
+                                <a href="index.html"><p class="text-white" style="font-size: 20px; font-weight: 600;">Anne Nissanka</p></a>
                             </div>
-                        </div><!--end col-->
+                        </div>
 
                         <div class="col-lg-6">
                             <div class="copyright d-flex">
                                 <div class="ms-auto">
-                                    <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Natia. Design with <i class="mdi mdi-heart text-danger"></i> by <a href="https://zoyothemes.com/" target="_blank" class="text-reset">Zoyothemes</a>.</p>
+                                    <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Anne Nissanka. All rights reserved.</p>
                                 </div>
                             </div>
-                        </div><!--end col-->
-                    </div><!--end row-->
-                </div><!--end container-->
+                        </div>
+                    </div>
+                </div>
             </div>
-
-        </div><!--end container-->
+        </div>
     </footer>
     <!-- Footer End -->
 
@@ -352,7 +581,6 @@
     <a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top rounded text-center align-items-center justify-content-center fs-5">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up icons"><polyline points="18 15 12 9 6 15"></polyline></svg>
     </a>
-    <!-- Back to top -->
 
     <!-- Bootstrap Js -->
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -363,15 +591,213 @@
     <script src="js/typed.js"></script>
     <script src="js/scrollCue.min.js"></script>
 
-    <!-- Shuffle Js -->
-    <script src="js/shuffle.min.js"></script>
-    <script src="js/filter.js"></script>
-
     <!-- swiper -->
     <script src="js/swiper-bundle.min.js"></script>
 
     <!-- Main Js -->
     <script src="js/app.js"></script>
 
-    </body>
+    <script>
+        // Portfolio data
+        const portfolioData = [
+            {
+                title: "Spring/Summer Collection 2024",
+                description: "Elegant evening wear with sustainable materials",
+                category: "fashion"
+            },
+            {
+                title: "Casual Wear",
+                description: "Comfort meets style",
+                category: "lifestyle"
+            },
+            {
+                title: "Handbag Collection",
+                description: "Luxury leather designs",
+                category: "accessories"
+            },
+            {
+                title: "Evening Dress",
+                description: "Red carpet ready",
+                category: "fashion"
+            },
+            {
+                title: "Winter Line",
+                description: "Cozy & chic",
+                category: "collections"
+            },
+            {
+                title: "Active Wear",
+                description: "Performance meets fashion",
+                category: "lifestyle"
+            },
+            {
+                title: "Jewelry Line",
+                description: "Minimalist elegance",
+                category: "accessories"
+            },
+            {
+                title: "Bridal Collection",
+                description: "Timeless beauty",
+                category: "fashion"
+            },
+            {
+                title: "Kids Line",
+                description: "Playful & practical",
+                category: "collections"
+            },
+            {
+                title: "Beach Wear",
+                description: "Summer vibes",
+                category: "lifestyle"
+            },
+            {
+                title: "Scarves",
+                description: "Silk elegance",
+                category: "accessories"
+            },
+            {
+                title: "Business Attire",
+                description: "Professional chic",
+                category: "fashion"
+            },
+            {
+                title: "Limited Edition",
+                description: "Exclusive designs",
+                category: "collections"
+            },
+            {
+                title: "Runway Collection",
+                description: "Paris Fashion Week highlights",
+                category: "fashion"
+            },
+            {
+                title: "Loungewear",
+                description: "Comfort first",
+                category: "lifestyle"
+            },
+            {
+                title: "Belts",
+                description: "Statement pieces",
+                category: "accessories"
+            }
+        ];
+
+        let currentImageIndex = 0;
+        let visibleItems = [];
+
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+
+                    visibleItems = [];
+                    portfolioItems.forEach((item, index) => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                            visibleItems.push(index);
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Initialize visible items
+            visibleItems = Array.from({length: portfolioItems.length}, (_, i) => i);
+
+            // Add click event to portfolio items
+            portfolioItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    openLightbox(index);
+                });
+            });
+        });
+
+        // Lightbox functionality
+        function openLightbox(index) {
+            const modal = document.getElementById('lightboxModal');
+            const image = document.getElementById('lightboxImage');
+            const title = document.getElementById('lightboxTitle');
+            const description = document.getElementById('lightboxDescription');
+
+            currentImageIndex = index;
+            
+            // Get the clicked item's image source
+            const clickedItem = document.querySelector(`[data-index="${index}"]`);
+            const imgSrc = clickedItem.querySelector('img').src;
+            const imgAlt = clickedItem.querySelector('img').alt;
+            
+            image.src = imgSrc;
+            image.alt = imgAlt;
+            title.textContent = portfolioData[index].title;
+            description.textContent = portfolioData[index].description;
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeImage(direction) {
+            const filteredItems = visibleItems.filter(index => {
+                const item = document.querySelector(`[data-index="${index}"]`);
+                return item.style.display !== 'none';
+            });
+
+            if (filteredItems.length === 0) return;
+
+            let currentIndex = filteredItems.indexOf(currentImageIndex);
+            currentIndex = (currentIndex + direction + filteredItems.length) % filteredItems.length;
+            currentImageIndex = filteredItems[currentIndex];
+
+            const image = document.getElementById('lightboxImage');
+            const title = document.getElementById('lightboxTitle');
+            const description = document.getElementById('lightboxDescription');
+
+            const item = document.querySelector(`[data-index="${currentImageIndex}"]`);
+            const imgSrc = item.querySelector('img').src;
+            const imgAlt = item.querySelector('img').alt;
+            
+            image.src = imgSrc;
+            image.alt = imgAlt;
+            title.textContent = portfolioData[currentImageIndex].title;
+            description.textContent = portfolioData[currentImageIndex].description;
+        }
+
+        // Close lightbox when clicking outside
+        document.getElementById('lightboxModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('lightboxModal');
+            if (modal.style.display === 'block') {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    changeImage(-1);
+                } else if (e.key === 'ArrowRight') {
+                    changeImage(1);
+                }
+            }
+        });
+    </script>
+
+</body>
 </html>
