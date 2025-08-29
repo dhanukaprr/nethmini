@@ -337,134 +337,8 @@
 
     <!-- Portfolio Grid -->
     <section class="py-5">
-        <div class="portfolio-grid">
-            <div class="portfolio-item" data-category="fashion" data-index="0">
-                <img src="https://via.placeholder.com/400x400/f8f9fa/6c757d?text=Spring+Collection" alt="Spring Collection">
-                <div class="portfolio-overlay">
-                    <h5>Spring/Summer Collection 2024</h5>
-                    <p>Elegant evening wear with sustainable materials</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item" data-category="lifestyle" data-index="1">
-                <img src="https://via.placeholder.com/400x400/e9ecef/495057?text=Casual+Wear" alt="Casual Wear">
-                <div class="portfolio-overlay">
-                    <h5>Casual Wear</h5>
-                    <p>Comfort meets style</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item" data-category="accessories" data-index="2">
-                <img src="https://via.placeholder.com/400x400/dee2e6/495057?text=Handbags" alt="Handbag Collection">
-                <div class="portfolio-overlay">
-                    <h5>Handbag Collection</h5>
-                    <p>Luxury leather designs</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item" data-category="fashion" data-index="3">
-                <img src="https://via.placeholder.com/400x400/ced4da/495057?text=Evening+Dress" alt="Evening Dress">
-                <div class="portfolio-overlay">
-                    <h5>Evening Dress</h5>
-                    <p>Red carpet ready</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item" data-category="collections" data-index="4">
-                <img src="https://via.placeholder.com/400x400/adb5bd/495057?text=Winter+Line" alt="Winter Line">
-                <div class="portfolio-overlay">
-                    <h5>Winter Line</h5>
-                    <p>Cozy & chic</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item" data-category="lifestyle" data-index="5">
-                <img src="https://via.placeholder.com/400x400/6c757d/ffffff?text=Active+Wear" alt="Active Wear">
-                <div class="portfolio-overlay">
-                    <h5>Active Wear</h5>
-                    <p>Performance meets fashion</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item" data-category="accessories" data-index="6">
-                <img src="https://via.placeholder.com/400x400/495057/ffffff?text=Jewelry" alt="Jewelry Line">
-                <div class="portfolio-overlay">
-                    <h5>Jewelry Line</h5>
-                    <p>Minimalist elegance</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item" data-category="fashion" data-index="7">
-                <img src="https://via.placeholder.com/400x400/343a40/ffffff?text=Bridal+Collection" alt="Bridal Collection">
-                <div class="portfolio-overlay">
-                    <h5>Bridal Collection</h5>
-                    <p>Timeless beauty</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item" data-category="collections" data-index="8">
-                <img src="https://via.placeholder.com/400x400/212529/ffffff?text=Kids+Line" alt="Kids Line">
-                <div class="portfolio-overlay">
-                    <h5>Kids Line</h5>
-                    <p>Playful & practical</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item" data-category="lifestyle" data-index="9">
-                <img src="https://via.placeholder.com/400x400/6c757d/ffffff?text=Beach+Wear" alt="Beach Wear">
-                <div class="portfolio-overlay">
-                    <h5>Beach Wear</h5>
-                    <p>Summer vibes</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item" data-category="accessories" data-index="10">
-                <img src="https://via.placeholder.com/400x400/495057/ffffff?text=Scarves" alt="Scarves">
-                <div class="portfolio-overlay">
-                    <h5>Scarves</h5>
-                    <p>Silk elegance</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item" data-category="fashion" data-index="11">
-                <img src="https://via.placeholder.com/400x400/343a40/ffffff?text=Business+Attire" alt="Business Attire">
-                <div class="portfolio-overlay">
-                    <h5>Business Attire</h5>
-                    <p>Professional chic</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item" data-category="collections" data-index="12">
-                <img src="https://via.placeholder.com/400x400/212529/ffffff?text=Limited+Edition" alt="Limited Edition">
-                <div class="portfolio-overlay">
-                    <h5>Limited Edition</h5>
-                    <p>Exclusive designs</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item" data-category="fashion" data-index="13">
-                <img src="https://via.placeholder.com/400x400/6c757d/ffffff?text=Runway+Collection" alt="Runway Collection">
-                <div class="portfolio-overlay">
-                    <h5>Runway Collection</h5>
-                    <p>Paris Fashion Week highlights</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item" data-category="lifestyle" data-index="14">
-                <img src="https://via.placeholder.com/400x400/495057/ffffff?text=Loungewear" alt="Loungewear">
-                <div class="portfolio-overlay">
-                    <h5>Loungewear</h5>
-                    <p>Comfort first</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item" data-category="accessories" data-index="15">
-                <img src="https://via.placeholder.com/400x400/343a40/ffffff?text=Belts" alt="Belts">
-                <div class="portfolio-overlay">
-                    <h5>Belts</h5>
-                    <p>Statement pieces</p>
-                </div>
-            </div>
+        <div class="portfolio-grid" id="portfolioGrid">
+            <!-- Items will be rendered dynamically -->
         </div>
     </section>
 
@@ -598,107 +472,58 @@
     <script src="js/app.js"></script>
 
     <script>
-        // Portfolio data
-        const portfolioData = [
-            {
-                title: "Spring/Summer Collection 2024",
-                description: "Elegant evening wear with sustainable materials",
-                category: "fashion"
-            },
-            {
-                title: "Casual Wear",
-                description: "Comfort meets style",
-                category: "lifestyle"
-            },
-            {
-                title: "Handbag Collection",
-                description: "Luxury leather designs",
-                category: "accessories"
-            },
-            {
-                title: "Evening Dress",
-                description: "Red carpet ready",
-                category: "fashion"
-            },
-            {
-                title: "Winter Line",
-                description: "Cozy & chic",
-                category: "collections"
-            },
-            {
-                title: "Active Wear",
-                description: "Performance meets fashion",
-                category: "lifestyle"
-            },
-            {
-                title: "Jewelry Line",
-                description: "Minimalist elegance",
-                category: "accessories"
-            },
-            {
-                title: "Bridal Collection",
-                description: "Timeless beauty",
-                category: "fashion"
-            },
-            {
-                title: "Kids Line",
-                description: "Playful & practical",
-                category: "collections"
-            },
-            {
-                title: "Beach Wear",
-                description: "Summer vibes",
-                category: "lifestyle"
-            },
-            {
-                title: "Scarves",
-                description: "Silk elegance",
-                category: "accessories"
-            },
-            {
-                title: "Business Attire",
-                description: "Professional chic",
-                category: "fashion"
-            },
-            {
-                title: "Limited Edition",
-                description: "Exclusive designs",
-                category: "collections"
-            },
-            {
-                title: "Runway Collection",
-                description: "Paris Fashion Week highlights",
-                category: "fashion"
-            },
-            {
-                title: "Loungewear",
-                description: "Comfort first",
-                category: "lifestyle"
-            },
-            {
-                title: "Belts",
-                description: "Statement pieces",
-                category: "accessories"
-            }
-        ];
-
+        const LS_KEY = 'portfolioItems';
+        let portfolioData = [];
         let currentImageIndex = 0;
         let visibleItems = [];
 
-        // Filter functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const portfolioItems = document.querySelectorAll('.portfolio-item');
+        async function loadPortfolioData() {
+            try {
+                const local = localStorage.getItem(LS_KEY);
+                if (local) {
+                    return JSON.parse(local);
+                }
+                const res = await fetch('portfolio.json', { cache: 'no-store' });
+                if (res.ok) {
+                    const json = await res.json();
+                    return json;
+                }
+            } catch (e) {
+                // ignore
+            }
+            return [];
+        }
 
+        function renderPortfolio(items) {
+            const grid = document.getElementById('portfolioGrid');
+            grid.innerHTML = '';
+            items.forEach((item, index) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'portfolio-item';
+                wrapper.setAttribute('data-category', item.category || 'misc');
+                wrapper.setAttribute('data-index', String(index));
+                wrapper.innerHTML = `
+                    <img src="${item.image || ''}" alt="${item.title || ''}">
+                    <div class="portfolio-overlay">
+                        <h5>${item.title || ''}</h5>
+                        <p>${item.description || ''}</p>
+                    </div>
+                `;
+                wrapper.addEventListener('click', function() { openLightbox(index); });
+                grid.appendChild(wrapper);
+            });
+            // Initialize visible items to all
+            visibleItems = Array.from({ length: items.length }, (_, i) => i);
+        }
+
+        function setupFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
-                    // Remove active class from all buttons
                     filterBtns.forEach(b => b.classList.remove('active'));
-                    // Add active class to clicked button
                     this.classList.add('active');
-
                     const filter = this.getAttribute('data-filter');
-
+                    const portfolioItems = document.querySelectorAll('.portfolio-item');
                     visibleItems = [];
                     portfolioItems.forEach((item, index) => {
                         if (filter === 'all' || item.getAttribute('data-category') === filter) {
@@ -710,16 +535,12 @@
                     });
                 });
             });
+        }
 
-            // Initialize visible items
-            visibleItems = Array.from({length: portfolioItems.length}, (_, i) => i);
-
-            // Add click event to portfolio items
-            portfolioItems.forEach((item, index) => {
-                item.addEventListener('click', function() {
-                    openLightbox(index);
-                });
-            });
+        document.addEventListener('DOMContentLoaded', async function() {
+            setupFilters();
+            portfolioData = await loadPortfolioData();
+            renderPortfolio(portfolioData);
         });
 
         // Lightbox functionality
@@ -738,8 +559,8 @@
             
             image.src = imgSrc;
             image.alt = imgAlt;
-            title.textContent = portfolioData[index].title;
-            description.textContent = portfolioData[index].description;
+            title.textContent = (portfolioData[index] && portfolioData[index].title) || '';
+            description.textContent = (portfolioData[index] && portfolioData[index].description) || '';
             
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
@@ -773,8 +594,8 @@
             
             image.src = imgSrc;
             image.alt = imgAlt;
-            title.textContent = portfolioData[currentImageIndex].title;
-            description.textContent = portfolioData[currentImageIndex].description;
+            title.textContent = (portfolioData[currentImageIndex] && portfolioData[currentImageIndex].title) || '';
+            description.textContent = (portfolioData[currentImageIndex] && portfolioData[currentImageIndex].description) || '';
         }
 
         // Close lightbox when clicking outside

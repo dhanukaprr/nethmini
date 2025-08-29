@@ -1,0 +1,18 @@
+[
+  { "title": "Spring/Summer Collection 2024", "description": "Elegant evening wear with sustainable materials", "category": "fashion", "image": "https://via.placeholder.com/400x400/f8f9fa/6c757d?text=Spring+Collection" },
+  { "title": "Casual Wear", "description": "Comfort meets style", "category": "lifestyle", "image": "https://via.placeholder.com/400x400/e9ecef/495057?text=Casual+Wear" },
+  { "title": "Handbag Collection", "description": "Luxury leather designs", "category": "accessories", "image": "https://via.placeholder.com/400x400/dee2e6/495057?text=Handbags" },
+  { "title": "Evening Dress", "description": "Red carpet ready", "category": "fashion", "image": "https://via.placeholder.com/400x400/ced4da/495057?text=Evening+Dress" },
+  { "title": "Winter Line", "description": "Cozy & chic", "category": "collections", "image": "https://via.placeholder.com/400x400/adb5bd/495057?text=Winter+Line" },
+  { "title": "Active Wear", "description": "Performance meets fashion", "category": "lifestyle", "image": "https://via.placeholder.com/400x400/6c757d/ffffff?text=Active+Wear" },
+  { "title": "Jewelry Line", "description": "Minimalist elegance", "category": "accessories", "image": "https://via.placeholder.com/400x400/495057/ffffff?text=Jewelry" },
+  { "title": "Bridal Collection", "description": "Timeless beauty", "category": "fashion", "image": "https://via.placeholder.com/400x400/343a40/ffffff?text=Bridal+Collection" },
+  { "title": "Kids Line", "description": "Playful & practical", "category": "collections", "image": "https://via.placeholder.com/400x400/212529/ffffff?text=Kids+Line" },
+  { "title": "Beach Wear", "description": "Summer vibes", "category": "lifestyle", "image": "https://via.placeholder.com/400x400/6c757d/ffffff?text=Beach+Wear" },
+  { "title": "Scarves", "description": "Silk elegance", "category": "accessories", "image": "https://via.placeholder.com/400x400/495057/ffffff?text=Scarves" },
+  { "title": "Business Attire", "description": "Professional chic", "category": "fashion", "image": "https://via.placeholder.com/400x400/343a40/ffffff?text=Business+Attire" },
+  { "title": "Limited Edition", "description": "Exclusive designs", "category": "collections", "image": "https://via.placeholder.com/400x400/212529/ffffff?text=Limited+Edition" },
+  { "title": "Runway Collection", "description": "Paris Fashion Week highlights", "category": "fashion", "image": "https://via.placeholder.com/400x400/6c757d/ffffff?text=Runway+Collection" },
+  { "title": "Loungewear", "description": "Comfort first", "category": "lifestyle", "image": "https://via.placeholder.com/400x400/495057/ffffff?text=Loungewear" },
+  { "title": "Belts", "description": "Statement pieces", "category": "accessories", "image": "https://via.placeholder.com/400x400/343a40/ffffff?text=Belts" }
+]

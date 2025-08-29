@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Portfolio Admin</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<style>
+		.container-sm { max-width: 920px; }
+		.item-card { border: 1px solid #eee; border-radius: 10px; padding: 16px; margin-bottom: 12px; background: #fff; }
+		.item-card .thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; background: #f3f3f3; }
+		.badge-cat { background: #ebb884; color: #fff; }
+		.drag { cursor: grab; }
+	</style>
+</head>
+<body class="bg-light">
+	<nav class="navbar navbar-expand-lg sticky navbar-light bg-white border-bottom">
+		<div class="container">
+			<a class="navbar-brand" href="index.html">Portfolio Admin</a>
+			<div class="ms-auto d-flex gap-2">
+				<a class="btn btn-outline-primary" href="portfolio.html" target="_blank">View Site</a>
+				<button class="btn btn-outline-danger d-none" id="btnLogout" type="button">Logout</button>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Login Gate -->
+	<section class="py-5" id="loginSection" style="display:none;">
+		<div class="container container-sm">
+			<div class="card shadow-sm">
+				<div class="card-body p-4">
+					<h4 class="mb-3">Admin Login</h4>
+					<form id="loginForm" class="row g-3">
+						<div class="col-12">
+							<label class="form-label">Username</label>
+							<input class="form-control" id="loginUsername" autocomplete="username" required />
+						</div>
+						<div class="col-12">
+							<label class="form-label">Password</label>
+							<input class="form-control" id="loginPassword" type="password" autocomplete="current-password" required />
+						</div>
+						<div class="col-12 d-flex align-items-center gap-2">
+							<button class="btn btn-primary" type="submit">Login</button>
+							<span class="text-danger small d-none" id="loginError">Invalid credentials</span>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<main class="py-4">
+		<div class="container container-sm">
+			<div class="d-flex align-items-center mb-3">
+				<h3 class="mb-0">Manage Portfolio Items</h3>
+				<div class="ms-auto d-flex gap-2">
+					<input type="file" id="importFile" accept="application/json" class="form-control" style="max-width: 220px;">
+					<button class="btn btn-outline-secondary" id="btnImport">Import JSON</button>
+					<button class="btn btn-outline-secondary" id="btnExport">Export JSON</button>
+					<button class="btn btn-danger" id="btnClear">Clear All</button>
+				</div>
+			</div>
+
+			<form id="itemForm" class="card card-body mb-4">
+				<div class="row g-3">
+					<div class="col-md-6">
+						<label class="form-label">Title</label>
+						<input class="form-control" id="title" required />
+					</div>
+					<div class="col-md-6">
+						<label class="form-label">Category</label>
+						<select class="form-select" id="category" required>
+							<option value="fashion">fashion</option>
+							<option value="lifestyle">lifestyle</option>
+							<option value="accessories">accessories</option>
+							<option value="collections">collections</option>
+						</select>
+					</div>
+					<div class="col-12">
+						<label class="form-label">Description</label>
+						<input class="form-control" id="description" required />
+					</div>
+					<div class="col-12">
+						<label class="form-label">Image URL</label>
+						<input class="form-control" id="image" placeholder="https://..." required />
+					</div>
+				</div>
+				<div class="mt-3">
+					<button class="btn btn-primary" type="submit" id="saveBtn">Add Item</button>
+					<button class="btn btn-secondary d-none" type="button" id="cancelEditBtn">Cancel Edit</button>
+				</div>
+			</form>
+
+			<div id="list"></div>
+		</div>
+	</main>
+
+	<script>
+		const LS_KEY = 'portfolioItems';
+		const AUTH_KEY = 'adminAuth';
+		let items = [];
+		let editingIndex = null;
+
+		async function loadInitial() {
+			try {
+				const local = localStorage.getItem(LS_KEY);
+				if (local) {
+					return JSON.parse(local);
+				}
+				const res = await fetch('portfolio.json', { cache: 'no-store' });
+				if (res.ok) return await res.json();
+			} catch (e) {}
+			return [];
+		}
+
+		function persist() {
+			localStorage.setItem(LS_KEY, JSON.stringify(items));
+		}
+
+		function render() {
+			const list = document.getElementById('list');
+			list.innerHTML = '';
+			items.forEach((it, idx) => {
+				const el = document.createElement('div');
+				el.className = 'item-card d-flex align-items-start gap-3';
+				el.draggable = true;
+				el.innerHTML = `
+					<img class="thumb" src="${it.image || ''}" alt="${it.title || ''}" />
+					<div class="flex-grow-1">
+						<div class="d-flex align-items-center">
+							<h5 class="mb-1 me-2">${it.title || ''}</h5>
+							<span class="badge badge-cat">${it.category || ''}</span>
+						</div>
+						<p class="mb-2 small text-muted">${it.description || ''}</p>
+						<div class="d-flex gap-2">
+							<button class="btn btn-sm btn-outline-primary" data-action="edit" data-idx="${idx}">Edit</button>
+							<button class="btn btn-sm btn-outline-danger" data-action="delete" data-idx="${idx}">Delete</button>
+							<span class="drag ms-auto text-muted" title="Drag to reorder">↕</span>
+						</div>
+					</div>
+				`;
+				// drag events
+				el.addEventListener('dragstart', e => {
+					e.dataTransfer.setData('text/plain', idx);
+				});
+				el.addEventListener('dragover', e => { e.preventDefault(); });
+				el.addEventListener('drop', e => {
+					e.preventDefault();
+					const from = parseInt(e.dataTransfer.getData('text/plain'), 10);
+					const to = idx;
+					if (from === to) return;
+					const [moved] = items.splice(from, 1);
+					items.splice(to, 0, moved);
+					persist();
+					render();
+				});
+				list.appendChild(el);
+			});
+		}
+
+		function resetForm() {
+			document.getElementById('itemForm').reset();
+			editingIndex = null;
+			document.getElementById('saveBtn').textContent = 'Add Item';
+			document.getElementById('cancelEditBtn').classList.add('d-none');
+		}
+
+		document.getElementById('itemForm').addEventListener('submit', e => {
+			e.preventDefault();
+			const title = document.getElementById('title').value.trim();
+			const category = document.getElementById('category').value.trim();
+			const description = document.getElementById('description').value.trim();
+			const image = document.getElementById('image').value.trim();
+			const payload = { title, category, description, image };
+			if (editingIndex === null) {
+				items.push(payload);
+			} else {
+				items[editingIndex] = payload;
+			}
+			persist();
+			render();
+			resetForm();
+		});
+
+		document.getElementById('cancelEditBtn').addEventListener('click', resetForm);
+
+		document.getElementById('list').addEventListener('click', e => {
+			const btn = e.target.closest('button[data-action]');
+			if (!btn) return;
+			const idx = parseInt(btn.getAttribute('data-idx'), 10);
+			const action = btn.getAttribute('data-action');
+			if (action === 'delete') {
+				items.splice(idx, 1);
+				persist();
+				render();
+			} else if (action === 'edit') {
+				const it = items[idx];
+				document.getElementById('title').value = it.title || '';
+				document.getElementById('category').value = it.category || 'fashion';
+				document.getElementById('description').value = it.description || '';
+				document.getElementById('image').value = it.image || '';
+				editingIndex = idx;
+				document.getElementById('saveBtn').textContent = 'Save Changes';
+				document.getElementById('cancelEditBtn').classList.remove('d-none');
+			}
+		});
+
+		document.getElementById('btnExport').addEventListener('click', () => {
+			const blob = new Blob([JSON.stringify(items, null, 2)], { type: 'application/json' });
+			const url = URL.createObjectURL(blob);
+			const a = document.createElement('a');
+			a.href = url;
+			a.download = 'portfolio.json';
+			a.click();
+			URL.revokeObjectURL(url);
+		});
+
+		document.getElementById('btnImport').addEventListener('click', async () => {
+			const fileInput = document.getElementById('importFile');
+			if (!fileInput.files || !fileInput.files[0]) return;
+			const text = await fileInput.files[0].text();
+			try {
+				const data = JSON.parse(text);
+				if (!Array.isArray(data)) throw new Error('Invalid JSON');
+				items = data;
+				persist();
+				render();
+				fileInput.value = '';
+			} catch (e) { alert('Import failed: ' + e.message); }
+		});
+
+		document.getElementById('btnClear').addEventListener('click', () => {
+			if (!confirm('Clear all items?')) return;
+			items = [];
+			persist();
+			render();
+		});
+
+		function updateAuthUI() {
+			const authed = localStorage.getItem(AUTH_KEY) === 'true';
+			document.getElementById('loginSection').style.display = authed ? 'none' : 'block';
+			document.querySelector('main').style.display = authed ? 'block' : 'none';
+			const logoutBtn = document.getElementById('btnLogout');
+			if (authed) {
+				logoutBtn.classList.remove('d-none');
+			} else {
+				logoutBtn.classList.add('d-none');
+			}
+		}
+
+		document.getElementById('loginForm').addEventListener('submit', function(e) {
+			e.preventDefault();
+			const u = document.getElementById('loginUsername').value.trim();
+			const p = document.getElementById('loginPassword').value;
+			if (u === 'dhanuka' && p === 'Blacksun75!') {
+				localStorage.setItem(AUTH_KEY, 'true');
+				document.getElementById('loginError').classList.add('d-none');
+				updateAuthUI();
+			} else {
+				document.getElementById('loginError').classList.remove('d-none');
+			}
+		});
+
+		document.getElementById('btnLogout').addEventListener('click', function() {
+			localStorage.removeItem(AUTH_KEY);
+			updateAuthUI();
+		});
+
+		(async function init() {
+			updateAuthUI();
+			if (localStorage.getItem(AUTH_KEY) === 'true') {
+				items = await loadInitial();
+				persist();
+				render();
+			}
+		})();
+	</script>
+</body>
+</html>
